@@ -6,8 +6,8 @@ import { css, jsx } from '@emotion/react'
 
 import {IBlock} from "./Interface";
 
-export const Block: React.FC<IBlock> = ({children,cssArray, onFocus}) => {
+export const Block: React.FC<IBlock> = ({children,cssArray}) => {
     return <>
-        <div css={cssArray} onClick={(e)=>onFocus(e)}>{children}</div>
+        <div css={cssArray} >{children}</div>
     </>
 }
