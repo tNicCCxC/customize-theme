@@ -11,24 +11,20 @@ export class Nodo {
 
 export class LinkedList {
 
-    head    :   Nodo
-
-    constructor() {
-        this.head   =   null;
-    }
+    root    :   Nodo = null;
 
     add(value: JSX.Element){
-        this.head = new Nodo(value, this.head);
+        this.root = new Nodo(value, this.root);
     }
 
     addToIndex(value: JSX.Element, index){
         if(index>this.length()) return;
-        let count = 0, nodo=this.head;
+        let count = 0, nodo=this.root;
 
         if(index===0){
             const newComponent = new Nodo(value, null);
-            newComponent.next=this.head
-            this.head=newComponent;
+            newComponent.next=this.root
+            this.root=newComponent;
             return;
         }
         while (nodo) {
@@ -46,10 +42,10 @@ export class LinkedList {
 
     modify(value: JSX.Element, index){
         if(index>this.length()-1) return;
-        let count = 0, nodo=this.head;
+        let count = 0, nodo=this.root;
 
         if(index===0){
-            this.head = new Nodo(value, this.head.next)
+            this.root = new Nodo(value, this.root.next)
             return;
         }
 
@@ -63,8 +59,8 @@ export class LinkedList {
     }
 
     length():number{
-        if(!this.head) return 0;
-        let count = 0, nodo = this.head;
+        if(!this.root) return 0;
+        let count = 0, nodo = this.root;
         while(nodo.next){
             count++;
             nodo = nodo.next
@@ -73,8 +69,8 @@ export class LinkedList {
     }
 
     find(index:number):Nodo{
-        if(!this.head) return null;
-        let count = 0, nodo=this.head;
+        if(!this.root) return null;
+        let count = 0, nodo=this.root;
         while (nodo.value) {
             if(index===count) {return nodo}
             count++;
@@ -82,11 +78,11 @@ export class LinkedList {
         }
     }
 
-    map(callback: Function){
+    toArray(){
         const res : JSX.Element[] = [];
-        let nodo = this.head;
+        let nodo = this.root;
         while (nodo){
-            res.push(callback(nodo.value));
+            res.push(nodo.value);
             nodo=nodo.next;
         }
          return res;

@@ -58,9 +58,9 @@ export default function Home() {
     return <>
         <header className={'undo'}> <button>Undo</button> </header>
         <section id={'page-section'}>
-            {    lista.map((E:JSX.Element)=>{
-                return <div key={new Date().getDate()*Math.random()}>{E}</div>
-            })}
+            { lista.toArray().map((e,index)=>{
+                return <div key={index}>{e}</div>
+            }) }
         </section>
     </>
 }
