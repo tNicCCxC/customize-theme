@@ -4,12 +4,14 @@ import {IPageStructure} from "../models/PageStructure";
 
 //styles
 import style from '../styles/Index.module.scss';
-import {ContactUs} from "../components/contact-us/ContactUs";
+import {SelectComponent} from "../components/select-component/select/SelectComponent";
 
 
 export default function Home() {
 
 
+    const [indexAddElement,setIndexAddElement]=useState(-1)
+    const [showSelectComponent, setShowSelectComponent] = useState(false);
     const [click, setClick] = useState(-1);
     const [list, setLista] = useState<IPageStructure[]>([{
         element: <Header
@@ -22,36 +24,38 @@ export default function Home() {
 
 
     const onFocus = (index:number) => {
-        console.log(index)
-        setClick(index)
+
     }
 
     const undo = () => {
-
+        list.splice(indexAddElement,1);
+        setLista([...list]);
     }
 
-    const addElement = (index:number) => {
-        setClick(-1)
-        list.splice(index+1,0,{
-            element: <Header
-                listNav={['Hola','Adios','hambre','example']}
-                IBlock={{cssArray:{color: 'darkorchid',backgroundColor: '#9ADA22'}}}
-                title={'Prueba de concepto'}
-                logoSrc={'https://dogecoin.com/assets/img/doge.png'}
-                cssLogo={{height: 100,width: 100}}/>
-        });
-        list.splice(index+1,0,{
-            element: <ContactUs IBlock={{cssArray:{}}} title={'Contactanos'} inputs={['Nombre', 'apellido', 'pregunta']} email={'tu-conejita-caliente@hot.com'} />
-        })
+    const onSelectNewComponent=(component:IPageStructure)=>{
+        list.splice(indexAddElement,0,component);
         setLista([...list]);
+        setClick(indexAddElement)
+        setShowSelectComponent(false)
+    }
+    const addElement = (index:number) => {
+        setIndexAddElement(index+1);
+        setClick(-1);
+        setShowSelectComponent(true);
+    }
+
+    const closeAddElement = () =>{
+        setShowSelectComponent(false)
     }
 
     return <>
         <header className={'undo'}> <button onClick={()=>undo()}>Undo</button> </header>
         <section id={'page-section'}>
+            <div className={showSelectComponent ? style.selectComponent:style.displayNone}>
+                <SelectComponent onClose={()=>closeAddElement()} onSelectNewComponent={(e)=>onSelectNewComponent(e)}/>
+            </div>
             {
                 list.map((item,index)=>{
-                    console.log(click+'==='+index)
                     return <div key={index}>
                         <div onClick={()=>onFocus(index)} className={click===index?style.ElementClicked:''}>
                             {item.element}

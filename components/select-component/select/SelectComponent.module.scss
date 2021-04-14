@@ -1,0 +1,47 @@
+.selectComponent{
+  h5{
+    margin: 0 0 25px 0;
+  }
+  .marBot{
+    margin-bottom: 10px;
+  }
+  .color{
+    color: #3c80fb;
+  }
+  .card{
+    margin-bottom: 10px;
+    border: 2px solid #96ddea;
+    border-radius: 5px;
+  }
+  button{
+    background-color: Transparent;
+    background-repeat:no-repeat;
+    border: none;
+    cursor:pointer;
+    overflow: hidden;
+    outline:none;
+  }
+
+  display: flex;
+  flex-direction: row;
+  padding: 10px;
+  .category{
+    width: 30%;
+    .item{
+      height: 40px;
+    }
+  }
+  .line{
+    background-color: #ffeed3;
+    color: #ffeed3;
+    width: 3px;
+    height: 580px;
+  }
+  .components{
+    padding: 0 10px;
+    display: flex;
+    .listComponent{
+
+    }
+  }
+}
