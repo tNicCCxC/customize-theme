@@ -28,7 +28,6 @@ export default function EditComponent(props:{component:IPageStructure, setCompon
         <h2>Modifica el bloque</h2>
         {
             component.metadata.map((meta,index)=>{
-                console.log(meta)
                 return <div key={index} className={style.element}>
                     {rednerInput(meta)}
                 </div>
