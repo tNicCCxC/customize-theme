@@ -3,31 +3,15 @@ import {IPageStructure} from "../../../models/PageStructure";
 import {Header} from "../../header/Header";
 import {useState} from "react";
 import {ContactUs} from "../../contact-us/ContactUs";
+import {headersList} from "../../../components-default/Headers";
+import {contactUsList} from "../../../components-default/ContactUs";
 
 export function SelectComponent (props:{onSelectNewComponent:Function, onClose: Function}) {
     const { onSelectNewComponent, onClose} = props;
     const [category,setCategory] = useState("Headers");
     const list = ["Headers","Contactenos"];
-    const headersComponents: IPageStructure[] = [
-        {
-            element: <Header
-                listNav={['nav1','nav2','nav3']}
-                IBlock={{cssArray:{color: 'darkorchid',backgroundColor: 'lightgray'}}}
-                title={'titulo'}
-                logoSrc={'https://dogecoin.com/assets/img/doge.png'}
-                cssLogo={{height: 50,width: 50}}/>
-        }
-    ]
-    const contactUsComponents: IPageStructure[] = [
-        {
-            element: <ContactUs
-                IBlock={{cssArray:{}}}
-                title={'Contactanos'}
-                inputs={['Nombre', 'apellido', 'pregunta']}
-                email={'tu-conejita-caliente@hot.com'} />
-
-        }
-    ]
+    const headersComponents: IPageStructure[] = headersList;
+    const contactUsComponents: IPageStructure[] = contactUsList;
 
     const categorySelected = (category:string) =>{
         switch (category){

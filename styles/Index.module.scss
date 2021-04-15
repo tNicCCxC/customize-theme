@@ -15,6 +15,20 @@
     border: 4px solid #B74F49;
     border-radius: 5px;
 }
+.displayFlex{
+    display: flex;
+    flex-direction: row;
+}
+
+.w30{
+    width: 30%;
+}
+.w70{
+    width: 70%;
+}
+.w100{
+    width: 100%;
+}
 
 .addElement{
     height: 5px

@@ -1,4 +1,26 @@
 export interface IPageStructure {
     element: JSX.Element,
-    metadata?: any,
+    metadata: IMetadata[],
+    data : any;
+}
+
+interface IMetadata {
+    type:     'array'|'object'|'text';
+    propName: string;
+    text?:    string;
+    props?:   Prop[] | PropsClass;
+}
+
+export interface Prop {
+    name:     string;
+    subProps: SubProp[];
+}
+
+export interface SubProp {
+    text: string;
+    name: string;
+}
+
+export interface PropsClass {
+    subProps: SubProp[];
 }
