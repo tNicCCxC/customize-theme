@@ -20,7 +20,7 @@ export default function Home() {
 
     const setComponent=(data:any)=>{
         list[click].data=data;
-        list[click].element.props=data;
+        list[click].element.type=data;
         setList([...list]);
     }
     const onFocus = (index:number) => {

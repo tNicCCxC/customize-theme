@@ -4,7 +4,7 @@ export interface IPageStructure {
     data : any;
 }
 
-interface IMetadata {
+export interface IMetadata {
     type:     'array'|'object'|'text';
     propName: string;
     text?:    string;
