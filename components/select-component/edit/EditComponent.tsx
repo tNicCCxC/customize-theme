@@ -10,9 +10,18 @@ export default function EditComponent(props:{component:IPageStructure, setCompon
     const editInputNormal = (e:ChangeEvent<HTMLInputElement>,meta:IMetadata) => {
         if(meta.type==='text'){
             data[meta.propName]=e.target.value;
-            return;
+        }
+        if(meta.type==='array'){
+            data[meta.propName]=e.target.value.split(',');
         }
     }
+
+    const editArray =(nameArray:string,prop:string,value:any)=>{
+        if(prop==='height') value = Number(value);
+        data[nameArray][prop] = value;
+        data[nameArray]['width'] = 'auto';
+    }
+
 
     const rednerInput=(meta:IMetadata)=>{
         if(meta.type==="text" || meta.type==='array'){
@@ -21,7 +30,18 @@ export default function EditComponent(props:{component:IPageStructure, setCompon
                 <input onChange={(e)=> editInputNormal(e,meta)}/>
             </div>
         }
-        return <div>es object fuck</div>
+        if(meta.type === 'object'){
+            const {propName} = meta;
+            return <div>
+                {"subProps" in meta.props ? meta.props.subProps.map((item, index) => {
+                    return <div key={index}>
+                        <label>{item.text}</label><br/>
+                        <input onChange={(e)=> editArray(propName,item.name,e.target.value)}/>
+                    </div>
+                }) : null}
+            </div>
+        }
+        return <></>
     }
 
     return <div className={style.container}>
@@ -33,6 +53,6 @@ export default function EditComponent(props:{component:IPageStructure, setCompon
                 </div>
             })
         }
-        <div><button onClick={()=>{setComponent(data)}}>Aceptar</button></div>
+        <div><button onClick={()=>{setComponent(data,component.type)}}>Aceptar</button></div>
     </div>
 }

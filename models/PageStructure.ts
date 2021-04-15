@@ -2,6 +2,7 @@ export interface IPageStructure {
     element: JSX.Element,
     metadata: IMetadata[],
     data : any;
+    type:string
 }
 
 export interface IMetadata {

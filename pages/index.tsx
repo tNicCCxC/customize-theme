@@ -6,6 +6,8 @@ import style from '../styles/Index.module.scss';
 import {SelectComponent} from "../components/select-component/select/SelectComponent";
 import EditComponent from "../components/select-component/edit/EditComponent";
 import {headersList} from "../components-default/Headers";
+import {Header} from "../components/header/Header";
+import {ContactUs} from "../components/contact-us/ContactUs";
 
 
 export default function Home() {
@@ -18,11 +20,16 @@ export default function Home() {
     const [list, setList] = useState<IPageStructure[]>([headersList[0]]);
 
 
-    const setComponent=(data:any)=>{
+    const setComponent=(data:any,type:string)=>{
         list[click].data=data;
-        let listCLick = list[click];
-        listCLick.element.props = data;
-        setList([...list,listCLick]);
+        switch(type){
+            case 'header':
+                list[click].element=<Header {...data} />
+                break;
+            case 'contact-us':
+                list[click].element=<ContactUs {...data} />
+        }
+        setList([...list]);
     }
     const onFocus = (index:number) => {
         if(index===click) {
@@ -77,7 +84,7 @@ export default function Home() {
                     }
                 </div>
                 <div className={click>-1?style.w30:style.displayNone}>
-                    <EditComponent component={clickedComponent} setComponent={(e)=>{setComponent(e)}}/>
+                    <EditComponent component={clickedComponent} setComponent={(e,type)=>{setComponent(e,type)}}/>
                 </div>
             </div>
         </section>
