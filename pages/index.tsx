@@ -26,7 +26,6 @@ export default function Home() {
 
 
     const setComponent=(data:any,type:string)=>{
-        console.log(data,type)
         list[click].data=data;
         switch(type){
             case 'header':
@@ -77,9 +76,10 @@ export default function Home() {
         }
         list.splice(indexAddElement,0,newComponent);
 
+        setShowSelectComponent(false);
         setList([...list]);
-        setClick(indexAddElement)
-        setShowSelectComponent(false)
+        setClick(indexAddElement);
+        setClickedComponent(list[indexAddElement]);
     }
     const addElement = (index:number) => {
         setIndexAddElement(index+1);
