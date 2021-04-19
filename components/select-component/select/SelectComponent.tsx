@@ -5,13 +5,15 @@ import {useState} from "react";
 import {ContactUs} from "../../contact-us/ContactUs";
 import {headersList} from "../../../components-default/Headers";
 import {contactUsList} from "../../../components-default/ContactUs";
+import {cardList} from "../../../components-default/Cards";
 
 export function SelectComponent (props:{onSelectNewComponent:Function, onClose: Function}) {
     const { onSelectNewComponent, onClose} = props;
     const [category,setCategory] = useState("Headers");
-    const list = ["Headers","Contactenos"];
+    const list = ["Headers","Contactenos","Cards"];
     const headersComponents: IPageStructure[] = headersList;
     const contactUsComponents: IPageStructure[] = contactUsList;
+    const cardsComponents: IPageStructure[] = cardList;
 
     const categorySelected = (category:string) =>{
         switch (category){
@@ -25,6 +27,14 @@ export function SelectComponent (props:{onSelectNewComponent:Function, onClose: 
                 return <div>
                     {
                         contactUsComponents.map((item,index)=>{
+                            return <div key={index} className={style.card} onClick={()=> onSelectNewComponent(item)}><button>{item.element}</button></div>
+                        })
+                    }
+                </div>
+            case "Cards":
+                return <div>
+                    {
+                        cardsComponents.map((item,index)=>{
                             return <div key={index} className={style.card} onClick={()=> onSelectNewComponent(item)}><button>{item.element}</button></div>
                         })
                     }

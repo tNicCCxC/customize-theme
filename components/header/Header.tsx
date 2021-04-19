@@ -18,7 +18,7 @@ export const Header = (props:IHeader) =>{
             </div>
             <div className={style.navStyle}>
                 <nav className={style.disFlex}>
-                    {listNav.map((nav,index)=>{
+                    {listNav?.map((nav,index)=>{
                         return <div key={index} className={style.nav}>{nav}</div>
                     })}
                 </nav>

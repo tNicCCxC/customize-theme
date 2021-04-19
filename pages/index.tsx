@@ -9,6 +9,9 @@ import {headersList} from "../components-default/Headers";
 import {Header} from "../components/header/Header";
 import {ContactUs} from "../components/contact-us/ContactUs";
 import chooseHeader from "../choose-component/ChooseHeaders";
+import WrapCardOne, {CardProduct} from "../components/card-product/CardProduct";
+import chooseCard from "../choose-component/ChooseCard";
+import chooseContactUs from "../choose-component/ChooseContactUs";
 
 
 export default function Home() {
@@ -31,8 +34,10 @@ export default function Home() {
             case 'contact-us':
                 list[click].element=<ContactUs {...data} />
                 break;
+            case 'card-product':
+                list[click].element = <WrapCardOne IBlock={{...data}} />;
+                break;
         }
-        console.log(list)
         setList([...list]);
     }
     const onFocus = (index:number) => {
@@ -51,6 +56,7 @@ export default function Home() {
     }
 
     const onSelectNewComponent=(component:IPageStructure)=>{
+        console.log(component.type)
         let newComponent : IPageStructure = {
             index: component.index,
             type: component.type,
@@ -63,10 +69,12 @@ export default function Home() {
                 newComponent.element = chooseHeader(component.data,component.index);
                 break;
             case 'contact-us':
-                newComponent.element = chooseHeader(component.data,component.index);
+                newComponent.element = chooseContactUs(component.data,component.index);
+                break;
+            case 'card-product':
+                newComponent.element = chooseCard(component.data,component.index);
                 break;
         }
-        console.log(component.type)
         list.splice(indexAddElement,0,newComponent);
 
         setList([...list]);

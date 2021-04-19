@@ -1,0 +1,43 @@
+.cardProduct {
+  width: 350px;
+  height: 400px;
+  padding: 10px;
+  .sectionDiv{
+    text-align: center;
+    img{
+      height: 150px;
+      width: auto;
+    }
+  }
+  .sectionBody{
+    h5{
+      font-weight: 700;
+      font-size: 22px;
+      margin: 0;
+      padding: 0;
+    }
+    h6{
+      font-weight: 200;
+      font-size: 18px;
+      margin: 0;
+      padding: 0;
+    }
+    p{
+      font-family: "DejaVu Sans Condensed";
+      font-size: 15px;
+      font-weight: 300;
+    }
+  }
+}
+
+.wrapCardOne{
+  padding: 20px;
+  .flexDisplay{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    .card{
+      margin: 10px auto;
+    }
+  }
+}
