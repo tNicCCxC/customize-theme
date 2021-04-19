@@ -26,6 +26,7 @@ export default function Home() {
 
 
     const setComponent=(data:any,type:string)=>{
+        console.log(data,type)
         list[click].data=data;
         switch(type){
             case 'header':
@@ -35,7 +36,7 @@ export default function Home() {
                 list[click].element=<ContactUs {...data} />
                 break;
             case 'card-product':
-                list[click].element = <WrapCardOne IBlock={{...data}} />;
+                list[click].element = <WrapCardOne {...data} />;
                 break;
         }
         setList([...list]);
@@ -56,7 +57,6 @@ export default function Home() {
     }
 
     const onSelectNewComponent=(component:IPageStructure)=>{
-        console.log(component.type)
         let newComponent : IPageStructure = {
             index: component.index,
             type: component.type,

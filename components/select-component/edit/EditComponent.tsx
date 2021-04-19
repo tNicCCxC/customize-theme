@@ -6,6 +6,7 @@ import { SketchPicker } from 'react-color';
 
 export default function EditComponent(props:{component:IPageStructure, setComponent:Function}){
 
+
     const { component,setComponent } = props
     let { data } = component;
     const [cssBlock, setCssBlock] = useState(component.data.IBlock.cssArray);
