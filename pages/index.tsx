@@ -8,6 +8,7 @@ import EditComponent from "../components/select-component/edit/EditComponent";
 import {headersList} from "../components-default/Headers";
 import {Header} from "../components/header/Header";
 import {ContactUs} from "../components/contact-us/ContactUs";
+import chooseHeader from "../choose-component/ChooseHeaders";
 
 
 export default function Home() {
@@ -17,7 +18,8 @@ export default function Home() {
     const [showSelectComponent, setShowSelectComponent] = useState(false);
     const [click, setClick] = useState(-1);
     const [clickedComponent, setClickedComponent] = useState<IPageStructure>(headersList[0])
-    const [list, setList] = useState<IPageStructure[]>([headersList[0]]);
+    const [list, setList] = useState<IPageStructure[]>([...[headersList[0]]]);
+
 
 
     const setComponent=(data:any,type:string)=>{
@@ -28,7 +30,9 @@ export default function Home() {
                 break;
             case 'contact-us':
                 list[click].element=<ContactUs {...data} />
+                break;
         }
+        console.log(list)
         setList([...list]);
     }
     const onFocus = (index:number) => {
@@ -47,7 +51,24 @@ export default function Home() {
     }
 
     const onSelectNewComponent=(component:IPageStructure)=>{
-        list.splice(indexAddElement,0,component);
+        let newComponent : IPageStructure = {
+            index: component.index,
+            type: component.type,
+            data: component.data,
+            metadata: component.metadata,
+            element: <div />
+        };
+        switch (component.type) {
+            case 'header':
+                newComponent.element = chooseHeader(component.data,component.index);
+                break;
+            case 'contact-us':
+                newComponent.element = chooseHeader(component.data,component.index);
+                break;
+        }
+        console.log(component.type)
+        list.splice(indexAddElement,0,newComponent);
+
         setList([...list]);
         setClick(indexAddElement)
         setShowSelectComponent(false)

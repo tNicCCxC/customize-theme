@@ -4,6 +4,7 @@ import {Header} from "../components/header/Header";
 export const headersList:IPageStructure[] = [
     {
         type:'header',
+        index:0,
         element: <Header
             listNav={['nav1','nav2','nav3']}
             IBlock={{cssArray:{color: 'darkorchid',backgroundColor: 'lightgray'}}}

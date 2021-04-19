@@ -1,4 +1,5 @@
 export interface IPageStructure {
+    index: number,
     element: JSX.Element,
     metadata: IMetadata[],
     data : any;

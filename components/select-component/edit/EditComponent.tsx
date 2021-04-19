@@ -4,9 +4,10 @@ import {ChangeEvent} from "react";
 
 
 export default function EditComponent(props:{component:IPageStructure, setComponent:Function}){
+
     const { component,setComponent } = props
     let { data } = component;
-
+    console.log(component)
     const editInputNormal = (e:ChangeEvent<HTMLInputElement>,meta:IMetadata) => {
         if(meta.type==='text'){
             data[meta.propName]=e.target.value;

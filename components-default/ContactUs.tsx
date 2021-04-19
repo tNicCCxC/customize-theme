@@ -4,6 +4,7 @@ import {ContactUs} from "../components/contact-us/ContactUs";
 export const contactUsList:IPageStructure[] = [
     {
         type:'contact-us',
+        index:0,
         element: <ContactUs
             IBlock={{cssArray:{}}}
             title={'Contactanos'}
