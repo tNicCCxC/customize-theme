@@ -7,7 +7,7 @@ export const headersList:IPageStructure[] = [
         index:0,
         element: <Header
             listNav={['nav1','nav2','nav3']}
-            IBlock={{cssArray:{color: 'darkorchid',backgroundColor: 'lightgray'}}}
+            IBlock={{cssArray:{color: '#9932CC',backgroundColor: '#d3d3d3'}}}
             title={'titulo'}
             logoSrc={'https://dogecoin.com/assets/img/doge.png'}
             cssLogo={{height: 50,width: 50}}/>,

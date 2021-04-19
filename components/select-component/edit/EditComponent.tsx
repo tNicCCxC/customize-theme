@@ -1,13 +1,15 @@
 import {IMetadata, IPageStructure} from "../../../models/PageStructure";
 import style from './EditComponent.module.scss';
-import {ChangeEvent} from "react";
+import {ChangeEvent, useState} from "react";
+import { SketchPicker } from 'react-color';
 
 
 export default function EditComponent(props:{component:IPageStructure, setComponent:Function}){
 
     const { component,setComponent } = props
     let { data } = component;
-    console.log(component)
+    const [cssBlock, setCssBlock] = useState(component.data.IBlock.cssArray);
+
     const editInputNormal = (e:ChangeEvent<HTMLInputElement>,meta:IMetadata) => {
         if(meta.type==='text'){
             data[meta.propName]=e.target.value;
@@ -24,6 +26,11 @@ export default function EditComponent(props:{component:IPageStructure, setCompon
     }
 
 
+    const onChangeColor=( key:string , color:string) =>{
+        cssBlock[key] = color;
+        setCssBlock(cssBlock);
+        data.IBlock.cssArray = cssBlock;
+    }
     const rednerInput=(meta:IMetadata)=>{
         if(meta.type==="text" || meta.type==='array'){
             return <div>
@@ -54,6 +61,17 @@ export default function EditComponent(props:{component:IPageStructure, setCompon
                 </div>
             })
         }
+        <div>
+            <label>Modifica Colores</label>
+            <div>
+                <label>Seleccione color de fondo</label>
+                <SketchPicker color={cssBlock.backgroundColor} onChangeComplete={(e)=>onChangeColor('backgroundColor',e.hex)}/>
+            </div>
+            <div>
+                <label>Seleccione color de la letra</label>
+                <SketchPicker color={cssBlock.color} onChangeComplete={(e)=>onChangeColor('color',e.hex)}/>
+            </div>
+        </div>
         <div><button onClick={()=>{setComponent(data,component.type)}}>Aceptar</button></div>
     </div>
 }
