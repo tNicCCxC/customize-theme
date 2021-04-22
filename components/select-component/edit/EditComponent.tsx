@@ -81,12 +81,17 @@ export default function EditComponent(props:{component:IPageStructure, setCompon
                 return <div>
                     <label>{meta.text}</label><br/>
                     <FilePond
+                        onaddfilestart={(e)=> {
+                            console.log(e);
+
+                        }}
+                        allowBrowse={true}
+                        allowReplace={true}
                         files={files}
                         onupdatefiles={setFiles}
                         allowMultiple={false}
-                        maxFiles={1}
                         server={server}
-                        name="files"
+                        name={`files${Math.random()}`}
                         labelIdle='Drag & Drop your files or <span class="filepond--label-action">Browse</span>'
                     />
                 </div>
@@ -132,6 +137,8 @@ export default function EditComponent(props:{component:IPageStructure, setCompon
                 <SketchPicker color={cssBlock.color} onChangeComplete={(e)=>onChangeColor('color',e.hex)}/>
             </div>
         </div>
-        <div><button onClick={()=>{setComponent(data,component.type)}}>Aceptar</button></div>
+        <div><button onClick={()=>{
+            setFiles([]);
+            setComponent(data,component.type)}}>Aceptar</button></div>
     </div>
 }
