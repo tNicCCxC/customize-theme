@@ -20,7 +20,7 @@ registerPlugin(FilePondPluginImageExifOrientation, FilePondPluginImagePreview)
 export default function EditComponent(props:{component:IPageStructure, setComponent:Function}){
 
     const [files, setFiles] = useState([])
-    const [url, setUrl] = useState([]);
+    const [url, setUrl] = useState<string>('');
 
     const { component,setComponent } = props
     let { data } = component;
